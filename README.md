@@ -1,2 +1,2 @@
 # UnitTest
-Gosu code for the Unit Test Framework
+Gosu code for the Unit Test Framework.
