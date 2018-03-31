@@ -94,7 +94,7 @@ class FileHandler
   */
   property set FileName(value : String) :void
   {
-    check(value <> null   , "The report file name cannot be null")
+    check(value != null   , "The report file name cannot be null")
     check(value.length > 0, "The report file name cannot be an empty string")
     _fileName = value 
     return
@@ -117,7 +117,7 @@ class FileHandler
    */ 
    property get IsOpen() : boolean
    {
-     return File <> null
+     return File != null
    }
    
 //------------------------------------------------------------------------------
@@ -132,7 +132,7 @@ class FileHandler
   */
   function open() : void
   {
-    check(_fileName <> null, "File name cannot be null")
+    check(_fileName != null, "File name cannot be null")
     close()
     
     //
@@ -160,7 +160,7 @@ class FileHandler
   */
   function close() : void
   {
-     if (File <> null)  
+     if (File != null)
      {
        File.flush()
        File.close() 
@@ -176,7 +176,7 @@ class FileHandler
   */
   function write(text : String) : void
   {
-    check(text <> null, "Text for a file cannot be null")
+    check(text != null, "Text for a file cannot be null")
     check(IsOpen      , "The file cannot be written to before it is opened: " + FileName)
     try
     {
