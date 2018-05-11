@@ -31,7 +31,7 @@
 
 package unittestcase.file
 
-uses gw.api.util.Logger
+uses unittestcase.file.Logger
 
 uses java.io.FileWriter
 uses java.lang.Throwable

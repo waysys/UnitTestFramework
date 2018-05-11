@@ -32,7 +32,7 @@
 package unittestcase
 
 uses gw.api.util.DateUtil
-uses gw.api.util.Logger
+uses unittestcase.file.Logger
 uses gw.i18n.DateTimeFormat
 uses gw.lang.reflect.IType
 uses gw.lang.reflect.TypeSystem
