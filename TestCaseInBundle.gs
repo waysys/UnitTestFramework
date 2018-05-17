@@ -3,7 +3,7 @@
 //------------------------------------------------------------------------------
 //
 //
-//  Copyright (c) 2011 Waysys, LLC. All Rights Reserved.
+//  Copyright (c) 2011, 2018 Waysys, LLC. All Rights Reserved.
 //
 //
 //  Waysys MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF
@@ -14,16 +14,6 @@
 //  DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 //
 //  For further information, contact Waysys LLC at wshaffer@waysysweb.com
-//  or 800-622-5315 (USA).
-//
-//-----------------------------------------------------------------------------
-//   Revisions
-//-----------------------------------------------------------------------------
-//
-// Date of Revision    Description                      Author    Issue Number
-// ----------------    -------------------------------  ------    ------------
-// 10-Oct-2011         Class created                    WAS
-// 11-Oct-2013         Updated for Version 8            WAS
 //
 //------------------------------------------------------------------------------
 //      Package Declaration
@@ -31,6 +21,7 @@
 
 package unittestcase
 
+uses gw.lang.reflect.IMethodInfo
 uses gw.pl.persistence.core.Bundle
 uses gw.transaction.Transaction
 
@@ -42,10 +33,9 @@ uses java.lang.Throwable
  * field testBundle.
  * 
  * @Author W. Shaffer
- * @Version 11-Oct-2013
+ * @Version 15-May-2018
  */
 class TestCaseInBundle extends TestCase  {
-
 
 //------------------------------------------------------------------------------
 //  Fields
@@ -53,12 +43,15 @@ class TestCaseInBundle extends TestCase  {
   
   protected var testBundle : Bundle
   protected var commitTest : boolean
+  static var USER = "su"
+
 
 //------------------------------------------------------------------------------
 //  Constructor
 //------------------------------------------------------------------------------
 
   construct() {
+    super()
   }
 
 
@@ -67,29 +60,22 @@ class TestCaseInBundle extends TestCase  {
 //------------------------------------------------------------------------------
 
   /**
-   * Perform certain set up functions
+   * Run a test method inside a transaction
    */
-   override public function setUp() {
-     super.setUp()
-     commitTest = false
-     testBundle = Transaction.getCurrent() 
-   }
+  @Param("method", "the method to be run")
+  override protected function runMethod(method : IMethodInfo) : void {
+    Transaction.runWithNewBundle(\bundle -> {
+      testBundle = bundle
+      invokeSuper(method)
+    }, USER)
+  }
 
   /**
-   * Perform certain tear down functions, including committing the
-   * bundle if requested
+   * Invoke runMethod in super.  The super symbol is not
+   * available in blocks.
    */
-   override public function tearDown() {
-     if (testBundle != null) {
-       if (commitTest) testBundle.commit()
-       else {
-         try {
-           testBundle.commit()
-         } catch (e : Throwable) {
-           // do nothing
-         }
-       }
-     }
-     super.tearDown()
-   }
+  @Param("method", "the method to be run")
+  private function invokeSuper(method : IMethodInfo) {
+    super.runMethod(method)
+  }
 }
