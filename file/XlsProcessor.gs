@@ -111,7 +111,7 @@ class XlsProcessor extends FileProcessor {
     values = new String[count]
     var indx = 0
     for (cell in row) {
-       if (cell <> null) {
+       if (cell != null) {
          values[indx] = cell.StringCellValue
        }
        else {
