@@ -31,7 +31,6 @@
 
 package unittestcase.file
 
-uses au.com.bytecode.opencsv.CSVReader
 uses java.io.FileReader
 uses unittestcase.AssertException
 

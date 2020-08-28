@@ -313,9 +313,9 @@ class TestReporter {
    public function fetchSpecInstance(aType : Type) : Specification {
       var aSpecification : Specification
       if (aType == null) throw new AssertException("aType cannot be null")
-      var annot = aType.TypeInfo.getAnnotation(Specification)
-      if (annot == null) aSpecification = null
-      else                    aSpecification = (annot.Instance as Specification)
+      var annotat = aType.TypeInfo.getAnnotation(Specification)
+      if (annotat == null) aSpecification = null
+      else                    aSpecification = (annotat.Instance as Specification)
       return aSpecification      
    }
    

@@ -50,7 +50,7 @@ class SampleFitTestCase extends FitTestCase {
     super.setUp()
   }
 
-  @Repeat("/BuildRunTest/FitSpreadsheet.csv")
+  @Repeat("/git/UnitTestFrameworkTest/FitSpreadsheet.csv")
   @Behavior("001")
   public function test_can_iterate_with_spreadsheet() {
     count++
@@ -63,7 +63,7 @@ class SampleFitTestCase extends FitTestCase {
     fail("should not execute this function")
   }
 
-  @Repeat("/BuildRunTest/FitSpreadsheet.csv")
+  @Repeat("/git/UnitTestFrameworkTest/FitSpreadsheet.csv")
   @Behavior("003")
   public function test_can_fetch_value() {
     var testID = getValue("TestID")
@@ -82,7 +82,7 @@ class SampleFitTestCase extends FitTestCase {
     }     
   }
 
-  @Repeat("/BuildRunTest/FitSpreadsheet.csv")
+  @Repeat("/git/UnitTestFrameworkTest/FitSpreadsheet.csv")
   @Behavior("004")
   public function test_can_handle_unknown_heading() {
     try {

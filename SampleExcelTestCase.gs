@@ -25,7 +25,6 @@ package unittestcase
 uses unittestcase.annotation.Specification
 uses unittestcase.annotation.Context
 uses unittestcase.annotation.Behavior
-uses unittestcase.annotation.Repeat
 uses unittestcase.annotation.RepeatSheet
 uses java.lang.Exception
 
@@ -33,7 +32,7 @@ uses java.lang.Exception
  * This class tests the use of Excel files for FIT testing
  *
  * <p>@Author W. Shaffer</p>
- * <p>@Version 26-Apr-2014</p>
+ * <p>@Version 17-Aug-2020</p>
  */
 @Specification("SAMPLE04", "ExcelTestCase")
 class SampleExcelTestCase extends FitTestCase {
@@ -50,20 +49,20 @@ class SampleExcelTestCase extends FitTestCase {
     super.setUp()
   }
 
-  @RepeatSheet("/BuildRunTest/FitSpreadsheet.xlsx", "FitSpreadsheet")
+  @RepeatSheet("/git/UnitTestFrameworkTest/FitSpreadsheet.xlsx", "FitSpreadsheet")
   @Behavior("001")
   public function test_can_iterate_with_spreadsheet() {
     count++
     print(count)
   }
 
-  @RepeatSheet("/BuildRunTest/FitSpreadsheet.xlsx", "XX")
+  @RepeatSheet("/git/UnitTestFrameworkTest/FitSpreadsheet.xlsx", "XX")
   @Behavior("002")
   public function test_can_handle_unknown_file() {
     fail("should not execute this function")
   }
 
-  @RepeatSheet("/BuildRunTest/FitSpreadsheet.xlsx", "FitSpreadsheet")
+  @RepeatSheet("/git/UnitTestFrameworkTest/FitSpreadsheet.xlsx", "FitSpreadsheet")
   @Behavior("003")
   public function test_can_fetch_value() {
     var testID = getValue("TestID")
@@ -82,7 +81,7 @@ class SampleExcelTestCase extends FitTestCase {
     }
   }
 
-  @RepeatSheet("/BuildRunTest/FitSpreadsheet.xlsx", "FitSpreadsheet")
+  @RepeatSheet("/git/UnitTestFrameworkTest/FitSpreadsheet.xlsx", "FitSpreadsheet")
   @Behavior("004")
   public function test_can_handle_unknown_heading() {
     try {

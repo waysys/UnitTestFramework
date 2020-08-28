@@ -31,7 +31,7 @@
 
 package unittestcase.file
 
-uses unittestcase.file.Logger
+uses gw.api.util.Logger
 
 uses java.io.FileWriter
 uses java.lang.Throwable
@@ -160,7 +160,7 @@ class FileHandler
   */
   function close() : void
   {
-     if (File != null)
+     if (File != null)  
      {
        File.flush()
        File.close() 
