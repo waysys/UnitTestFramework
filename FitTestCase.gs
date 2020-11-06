@@ -176,7 +176,7 @@ class FitTestCase extends TestCase{
      }
      if (method.hasAnnotation(RepeatSheet)) {
        var repeat = method.getAnnotation(RepeatSheet).Instance as RepeatSheet
-       fileName = repeat.Filename
+       fileName = repeat.filename()
      }
      return fileName
    }
@@ -189,7 +189,7 @@ class FitTestCase extends TestCase{
      var sheetName = ""
      if (method.hasAnnotation(RepeatSheet)) {
        var repeat = method.getAnnotation(RepeatSheet).Instance as RepeatSheet
-       sheetName = repeat.Sheet
+       sheetName = repeat.sheet()
      }
      return sheetName
    }

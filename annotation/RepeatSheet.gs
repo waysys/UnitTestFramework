@@ -30,9 +30,9 @@
 
 package unittestcase.annotation
 
-uses gw.lang.annotation.AnnotationUsage
-uses gw.lang.annotation.UsageTarget
-uses gw.lang.annotation.UsageModifier
+uses java.lang.annotation.Target
+uses java.lang.annotation.ElementType
+uses java.lang.annotation.Retention
 
 /**
  * This annotation is used to specify the Excel file and workbook sheet for repeating
@@ -42,18 +42,10 @@ uses gw.lang.annotation.UsageModifier
  * <p>@Version 27-Apr-2014</p>
  *
  */
-@AnnotationUsage(UsageTarget.MethodTarget, UsageModifier.One)
-class RepeatSheet implements IAnnotation {
-
-  /**
-   * Identifiers for this annotation
-   */
-  protected var _filename : String as Filename
-  protected var _sheet : String as Sheet
-
-  construct(filenm : String, sht : String) {
-    _filename = filenm
-    _sheet = sht
-  }
+@Target(METHOD)
+@Retention(RUNTIME)
+annotation RepeatSheet {
+  function filename() : String
+  function sheet() : String
 
 }
